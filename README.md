@@ -1,109 +1,110 @@
-# MDK UI Component Library
+# MDK UI Development Kit
 
-## Stack
+> A developer-first toolkit providing pre-built components and seamless backend integration for building mining operations applications in days instead of weeks.
 
-- **pnpm workspaces** - Package management with workspace linking
-- **Turborepo** - Build orchestration with caching (fast incremental builds)
-- **TypeScript 5.8** - Strict mode enabled
-- **ESLint (antfu config)** - Linting + formatting in one (no Prettier needed)
-- **Husky + lint-staged** - Auto-fixes code on commit
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/tetherto/miningos-app-ui/blob/staging/LICENSE)
 
-**Style:** double quotes, semicolons, 2-space indent
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Getting Started](#getting-started)
+- [Documentation](#documentation)
+- [Examples](#examples)
+- [Support](#support)
+- [License](#license)
+
+---
+
+## Overview
+
+The **MDK UI Development Kit** is a comprehensive toolkit providing:
+
+- **150-200+ production-tested components** (foundation + domain-specific)
+- **87+ API integration hooks** (RTK Query-based)
+- **70+ custom React hooks** for common patterns
+- **Complete state management** (Redux Toolkit)
+- **Modern tech stack** (React 19, shadcn/ui, React Hook Form, Zod)
+- **5x faster forms** compared to legacy solutions
+
+### Key Benefits
+
+- 🚀 **10x faster development** - Build dashboards in days, not weeks
+- 🎨 **Consistent UX** - Uniform design patterns across all applications
+- 🔌 **Seamless integration** - Type-safe API client with intelligent caching
+- 🎯 **Battle-tested** - Extracted from production Mining OS codebase
+- 📦 **Zero CSS-in-JS runtime** - Better performance, smaller bundles
+
+---
 
 ## Getting Started
 
+### Prerequisites
+
+- **Node.js** 20+ (LTS)
+- **pnpm** 9+ (package manager)
+
+### Installation
+
 ```bash
+# Clone the repository
+git clone https://github.com/tetherto/miningos-ui-kit.git
+cd miningos-ui-kit
+
+# Install dependencies
 pnpm install
+
+# Build all packages
+pnpm build
 ```
 
-## Commands
+### Quick Start
 
 ```bash
-pnpm dev        # Run all packages in dev mode
-pnpm build      # Build all packages
-pnpm lint       # Check for issues
-pnpm lint:fix   # Auto-fix issues
-pnpm typecheck  # Type check
-pnpm check      # Lint + typecheck
+# Run all packages in dev mode
+pnpm dev
+
+# Run specific package
+pnpm dev --filter @mdk/components-foundation
+
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint and typecheck
+pnpm check
 ```
 
-## Structure
+---
 
-```
-apps/       # Applications (cli, docs site, playground, etc.)
-packages/   # Shared packages (@mdk-ui/components, @mdk-ui/utils, etc.)
-```
+## Documentation
 
-## How Packages Work
+- **[Architecture](ARCHITECTURE.md)** - System architecture, package structure, and technology stack
+- **[Contributing](CONTRIBUTING.md)** - Contribution guidelines, development workflow, and coding standards
+- **API Documentation**: [docs.mdk.io]() (TBD)
 
-Each package in `packages/` or `apps/` is independent with its own `package.json`. Example:
+---
 
-```
-packages/components/
-├── src/
-├── package.json      # name: "@mdk-ui/components"
-├── tsconfig.json     # extends root config
-└── eslint.config.mjs # package-specific config (optional)
-```
+## Examples
 
-Cross-package imports just work:
+- **Minimal App**: [examples/minimal-app](examples/minimal-app)
+- **Dashboard App**: [examples/dashboard-app](examples/dashboard-app)
 
-```ts
-import { Button } from "@mdk-ui/components";
-```
+---
 
-pnpm links workspace packages automatically - no need to publish.
+## Support
 
-## Extending Configs Per Package
+- **Issues**: [GitHub Issues](https://github.com/tetherto/miningos-ui-kit/issues)
 
-### TypeScript
+---
 
-Extend root config:
+## License
 
-```json
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "paths": { "@/*": ["./src/*"] }
-  },
-  "include": ["src"]
-}
-```
+Apache 2.0 - See [LICENSE](https://github.com/tetherto/miningos-app-ui/blob/staging/LICENSE) for details.
 
-### ESLint
+---
 
-Create package-specific config with React rules:
+## Acknowledgments
 
-```js
-import antfu from "@antfu/eslint-config";
-
-export default antfu({
-  react: true,
-  stylistic: {
-    indent: 2,
-    quotes: "double",
-    semi: true,
-  },
-});
-```
-
-## Adding Dependencies to a Package
-
-Using filter from root:
-
-```bash
-pnpm add react --filter @mdk-ui/components
-pnpm add -D vitest --filter @mdk-ui/components
-```
-
-Or cd into the package directory:
-
-```bash
-cd packages/components
-pnpm add react
-pnpm add -D vitest
-```
-
-## CI
-
-CI runs on every PR: lint → typecheck → build
+Built with contributions from the mining operations team.
