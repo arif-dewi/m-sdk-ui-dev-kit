@@ -7,7 +7,9 @@
 ## 📋 Table of Contents
 
 - [Overview](#overview)
+- [Packages](#packages)
 - [Getting Started](#getting-started)
+- [Build & Development](#build--development)
 - [Documentation](#documentation)
 - [Examples](#examples)
 - [Support](#support)
@@ -36,12 +38,58 @@ The **MDK UI Development Kit** is a comprehensive toolkit providing:
 
 ---
 
+## Packages
+
+This monorepo contains 9 packages organized in a layered architecture:
+
+### Core Layer
+- **`@mdk/core`** - Core utilities, types, and Radix UI primitives
+- **`@mdk/theme`** - Theming system with design tokens
+- **`@mdk/hooks`** - Custom React hooks
+
+### Component Layers
+- **`@mdk/components-foundation`** - Generic, reusable UI components
+- **`@mdk/components-domain`** - Mining-specific components
+- **`@mdk/components-feature`** - Complete features
+
+### Data & State
+- **`@mdk/api-client`** - API integration with RTK Query
+- **`@mdk/state`** - Redux store and state management
+
+### Development
+- **`@mdk/test-utils`** - Testing utilities and helpers
+
+### Demo App
+
+Interactive demo showcasing all components.
+
+- **Location**: `apps/demo`
+- **Run**: `pnpm --filter @mdk/demo dev`
+
+📖 **See [docs/STRUCTURE.md](docs/STRUCTURE.md) for complete package details and dependency graph.**
+
+---
+
 ## Getting Started
 
 ### Prerequisites
 
 - **Node.js** 20+ (LTS)
-- **pnpm** 9+ (package manager)
+- **pnpm** 10+ (package manager)
+
+### Setup pnpm
+
+This project uses pnpm as the package manager. Enable it using corepack (built into Node.js):
+
+```bash
+# Enable corepack (comes with Node.js)
+corepack enable
+
+# Verify pnpm is available
+pnpm --version
+```
+
+Alternatively, you can use `npx pnpm` for all commands if you prefer not to enable corepack.
 
 ### Installation
 
@@ -60,29 +108,144 @@ pnpm build
 ### Quick Start
 
 ```bash
-# Run all packages in dev mode
+# Development mode (watch all packages)
 pnpm dev
 
-# Run specific package
-pnpm dev --filter @mdk/components-foundation
+# Run the demo app
+pnpm dev:demo
 
 # Build all packages
 pnpm build
 
-# Run tests
-pnpm test
+# Build specific package
+pnpm --filter @mdk/core build
 
-# Lint and typecheck
-pnpm check
+# Type check all packages
+pnpm typecheck
+
+# Lint all packages
+pnpm lint
+
+# Lint and fix
+pnpm lint:fix
 ```
+
+### Using @mdk/core in Your App
+
+1. Add the dependency to your app's `package.json`:
+
+```json
+{
+  "dependencies": {
+    "@mdk/core": "workspace:*"
+  }
+}
+```
+
+2. Import and use components:
+
+```tsx
+import { Button, Dialog, Switch } from '@mdk/core'
+import '@mdk/core/styles.css'
+
+function App() {
+  return <Button variant="outline">Click me</Button>
+}
+```
+
+See [packages/core/USAGE.md](packages/core/USAGE.md) for detailed usage examples.
+
+---
+
+## Build & Development
+
+### Build Commands
+
+```bash
+# Build everything (TypeScript + SCSS)
+pnpm build
+
+# Build only TypeScript
+pnpm build:ts
+
+# Build only SCSS
+pnpm build:scss
+
+# Clean all build artifacts
+pnpm clean
+```
+
+### Watch Mode
+
+```bash
+# Watch all packages (TypeScript + SCSS)
+pnpm dev
+
+# Watch packages only (no demo)
+pnpm dev:packages
+
+# Watch only TypeScript
+pnpm watch:ts
+
+# Watch only SCSS
+pnpm watch:scss
+```
+
+### Development Workflows
+
+**Full Stack Development:**
+```bash
+pnpm dev  # Watches all packages + runs demo
+```
+
+**Package Development:**
+```bash
+pnpm dev:packages  # Watches packages without demo
+```
+
+**Demo App Only:**
+```bash
+pnpm dev:demo  # Runs demo with HMR
+```
+
+For detailed information, see:
+- [Build Scripts Guide](docs/BUILD_SCRIPTS.md) - Commands and workflows
+- [Watch Mode Guide](docs/WATCH_MODE_GUIDE.md) - Development with auto-reload
+- [Build System Overview](docs/BUILD_SYSTEM.md) - Turborepo architecture
+- [SCSS Setup](docs/SCSS_SETUP.md) - Styling system
 
 ---
 
 ## Documentation
 
-- **[Architecture](ARCHITECTURE.md)** - System architecture, package structure, and technology stack
-- **[Contributing](CONTRIBUTING.md)** - Contribution guidelines, development workflow, and coding standards
-- **API Documentation**: [docs.mdk.io]() (TBD)
+### Core Documentation
+
+- **[Architecture](docs/ARCHITECTURE.md)** - System architecture, package structure, and technology stack
+- **[Structure](docs/STRUCTURE.md)** - Complete package structure and dependency graph
+- **[Contributing](docs/CONTRIBUTING.md)** - Contribution guidelines, development workflow, and coding standards
+
+### Build & Development
+
+- **[Build Scripts](docs/BUILD_SCRIPTS.md)** - Build commands and development workflows
+- **[Build System](docs/BUILD_SYSTEM.md)** - Turborepo architecture and configuration
+- **[Watch Mode](docs/WATCH_MODE_GUIDE.md)** - Development with auto-reload
+- **[SCSS Setup](docs/SCSS_SETUP.md)** - Styling system and compilation
+
+### Package Documentation
+
+- **[@mdk/core](packages/core/README.md)** - Core components and utilities ([Usage Guide](packages/core/USAGE.md))
+- **[@mdk/theme](packages/theme/README.md)** - Theming system
+- **[@mdk/hooks](packages/hooks/README.md)** - Custom React hooks
+- **[@mdk/components-foundation](packages/components-foundation/README.md)** - Foundation components
+- **[@mdk/components-domain](packages/components-domain/README.md)** - Domain-specific components
+- **[@mdk/components-feature](packages/components-feature/README.md)** - Feature components
+- **[@mdk/api-client](packages/api-client/README.md)** - API integration
+- **[@mdk/state](packages/state/README.md)** - State management
+- **[@mdk/test-utils](packages/test-utils/README.md)** - Testing utilities
+
+### Demo App
+
+- **[Demo App](apps/demo/README.md)** - Interactive component showcase
 
 ---
 

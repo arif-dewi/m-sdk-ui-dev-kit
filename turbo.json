@@ -4,9 +4,37 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**", "src/styles.css"]
+    },
+    "build:ts": {
+      "dependsOn": ["^build:ts"],
+      "outputs": ["dist/**"]
+    },
+    "build:scss": {
+      "dependsOn": ["^build:scss"],
+      "outputs": ["src/styles.css"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:ts": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:scss": {
+      "cache": false,
+      "persistent": true
+    },
+    "watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "watch:ts": {
+      "cache": false,
+      "persistent": true
+    },
+    "watch:scss": {
       "cache": false,
       "persistent": true
     },
