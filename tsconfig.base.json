@@ -24,6 +24,7 @@
     "noEmit": true,
     "declaration": true,
     "declarationMap": true,
+    "sourceMap": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "forceConsistentCasingInFileNames": true,

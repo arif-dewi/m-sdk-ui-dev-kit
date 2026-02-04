@@ -5,6 +5,7 @@ export default antfu(
     type: 'lib',
     typescript: true,
     formatters: false,
+    ignores: ['postcss.config.js', 'vite.config.base.js'],
   },
   {
     rules: {
@@ -13,17 +14,12 @@ export default antfu(
       'no-console': ['warn'],
       'antfu/no-top-level-await': 'off',
       'node/prefer-global/process': 'off',
-      'perfectionist/sort-imports': [
-        'error',
-        {
-          tsconfigRootDir: '.',
-        },
-      ],
+      'perfectionist/sort-imports': 'off',
       'unicorn/filename-case': [
         'error',
         {
           case: 'kebabCase',
-          ignore: ['README.md'],
+          ignore: ['README.md', 'App.tsx'],
         },
       ],
     },
