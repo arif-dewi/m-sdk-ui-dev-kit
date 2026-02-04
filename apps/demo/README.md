@@ -1,6 +1,6 @@
-# @mdk/demo
+# @mining-sdk/demo
 
-Demo application showcasing the `@mdk/core` component library.
+Demo application showcasing the `@mining-sdk/core` component library.
 
 ## Getting Started
 
@@ -9,7 +9,7 @@ Demo application showcasing the `@mdk/core` component library.
 pnpm install
 
 # Run the demo app
-pnpm --filter @mdk/demo dev
+pnpm --filter @mining-sdk/demo dev
 ```
 
 ## Features
@@ -28,11 +28,11 @@ This demo showcases:
 
 ```bash
 # Type check
-pnpm --filter @mdk/demo typecheck
+pnpm --filter @mining-sdk/demo typecheck
 
 # Lint
-pnpm --filter @mdk/demo lint
+pnpm --filter @mining-sdk/demo lint
 
 # Build
-pnpm --filter @mdk/demo build
+pnpm --filter @mining-sdk/demo build
 ```

@@ -31,11 +31,11 @@ export function createLibConfig({ packageDir, packageName }) {
           api: 'modern-compiler',
           // Add workspace packages to load paths
           loadPaths: [resolve(packageDir, '../../packages')],
-          // Custom importer for @mdk/* packages
+          // Custom importer for @mining-sdk/* packages
           importers: [
             {
               canonicalize(url) {
-                if (url.startsWith('@mdk/')) {
+                if (url.startsWith('@mining-sdk/')) {
                   const [, pkgName, ...pathParts] = url.split('/')
                   const pkgPath = resolve(
                     packageDir,
@@ -55,9 +55,8 @@ export function createLibConfig({ packageDir, packageName }) {
     },
     resolve: {
       alias: {
-        '@mdk/core': resolve(packageDir, '../core/src'),
-        '@mdk/theme': resolve(packageDir, '../theme/src'),
-        '@mdk/components-foundation': resolve(packageDir, '../components-foundation/src'),
+        '@mining-sdk/core': resolve(packageDir, '../core/src'),
+        '@mining-sdk/foundation': resolve(packageDir, '../foundation/src'),
       },
     },
   })
